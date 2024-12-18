@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy1ilmy8wbd1f"]
+
+[ext_resource type="Script" uid="uid://cynurd1trbhds" path="res://scenes/managers/game_manager.gd" id="1_i04cf"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_i04cf")
+
+[node name="SecondsTimer" type="Timer" parent="."]
+unique_name_in_owner = true

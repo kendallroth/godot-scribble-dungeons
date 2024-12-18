@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://jj5i8ep0olbv"]
+
+[ext_resource type="Script" uid="uid://clbtt6hemghv5" path="res://scenes/characters/player/player.gd" id="1_232lt"]
+[ext_resource type="Texture2D" uid="uid://dhh7i58trrxg1" path="res://scenes/characters/player/player_body.png" id="2_6tcpe"]
+[ext_resource type="Script" uid="uid://dqiuy1vry1b0x" path="res://scenes/characters/player/controllers/weapon_controller.gd" id="2_75vfm"]
+[ext_resource type="PackedScene" uid="uid://b2u2lxrtixymc" path="res://scenes/objects/weapons/sword/weapon_sword.tscn" id="3_0owmy"]
+[ext_resource type="Texture2D" uid="uid://bh8rgitvpvpfn" path="res://scenes/characters/player/player_hand.png" id="3_fa86b"]
+[ext_resource type="Script" uid="uid://cpxuo8kr8mkq2" path="res://scenes/characters/player/controllers/pickup_controller.gd" id="3_qek5x"]
+[ext_resource type="Script" uid="uid://d4ikdihitrhqc" path="res://scenes/components/velocity_component.gd" id="4_lvxji"]
+[ext_resource type="Texture2D" uid="uid://dq3f1h1i66rdu" path="res://scenes/characters/player/player_eye.png" id="4_p47bc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0owmy"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhsnc"]
+radius = 21.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+collision_layer = 256
+collision_mask = 1543
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294901760
+script = ExtResource("1_232lt")
+
+[node name="CameraRemoteTransform" type="RemoteTransform2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="WeaponController" type="Node" parent="Controllers" node_paths=PackedStringArray("current_weapon", "weapon_mount")]
+script = ExtResource("2_75vfm")
+current_weapon = NodePath("../../WeaponMount/WeaponSword")
+weapon_mount = NodePath("../../WeaponMount")
+
+[node name="PickupController" type="Node" parent="Controllers" node_paths=PackedStringArray("pickup_area")]
+script = ExtResource("3_qek5x")
+pickup_area = NodePath("../../PickupArea")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="VelocityComponent" type="Node" parent="Components"]
+script = ExtResource("4_lvxji")
+metadata/_custom_type_script = ExtResource("4_lvxji")
+
+[node name="PickupArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 1024
+
+[node name="PickupCollider" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(14, 0)
+shape = SubResource("CircleShape2D_0owmy")
+
+[node name="Model" type="Node2D" parent="."]
+
+[node name="BodySprite" type="Sprite2D" parent="Model"]
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6tcpe")
+
+[node name="HandsPreview" type="Node2D" parent="Model"]
+visible = false
+
+[node name="HandLeftSprite" type="Sprite2D" parent="Model/HandsPreview"]
+position = Vector2(3, 3)
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_fa86b")
+offset = Vector2(-60, -30)
+
+[node name="HandRightSprite" type="Sprite2D" parent="Model/HandsPreview"]
+position = Vector2(3, -3)
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_fa86b")
+offset = Vector2(60, -30)
+flip_h = true
+
+[node name="EyeLeftSprite" type="Sprite2D" parent="Model"]
+modulate = Color(0.446777, 0.446777, 0.446777, 1)
+position = Vector2(7, -5)
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_p47bc")
+
+[node name="EyeRightSprite" type="Sprite2D" parent="Model"]
+modulate = Color(0.446777, 0.446777, 0.446777, 1)
+position = Vector2(7, 5)
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_p47bc")
+flip_h = true
+
+[node name="WeaponMount" type="Node2D" parent="."]
+
+[node name="WeaponSword" parent="WeaponMount" instance=ExtResource("3_0owmy")]
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dhsnc")
+metadata/_edit_lock_ = true

@@ -1,0 +1,201 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2u2lxrtixymc"]
+
+[ext_resource type="Script" uid="uid://dwyxaw36qk5y6" path="res://scenes/objects/weapons/weapon.gd" id="1_uicay"]
+[ext_resource type="Texture2D" uid="uid://dhh7i58trrxg1" path="res://scenes/characters/player/player_body.png" id="2_h6tx2"]
+[ext_resource type="Texture2D" uid="uid://cugupo5ryya7y" path="res://scenes/objects/weapons/sword/weapon_sword.png" id="3_eybql"]
+[ext_resource type="Texture2D" uid="uid://bh8rgitvpvpfn" path="res://scenes/characters/player/player_hand.png" id="3_ufgyg"]
+[ext_resource type="PackedScene" uid="uid://b58ynsalamtay" path="res://scenes/components/hitbox_component.tscn" id="4_hg071"]
+
+[sub_resource type="Animation" id="Animation_uicay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Hands/WeaponHand/SwordSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Hands/WeaponHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Hands/WeaponHand/SwordSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Hands/WeaponHand/SwordSprite/HitboxComponent/HitboxCollider:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Hands/OffHand:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_eybql"]
+resource_name = "attack"
+length = 0.35
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/Hands/WeaponHand/SwordSprite:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.0003, 0.0004, 0.0005, 0.05, 0.275, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 1.5708, 1.5708, 1.5708, 1.5708, 1.5708, 1.74533, 1.22173, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/Hands/WeaponHand:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.275, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.698132, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/Hands/WeaponHand/SwordSprite:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.275, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.65, 0.65), Vector2(0.5, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Model/Hands/WeaponHand/SwordSprite/HitboxComponent/HitboxCollider:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.275),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Model/Hands/OffHand:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.275, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w73at"]
+_data = {
+&"RESET": SubResource("Animation_uicay"),
+&"attack": SubResource("Animation_eybql")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hg071"]
+size = Vector2(20.8911, 20.7703)
+
+[node name="WeaponSword" type="Node2D" node_paths=PackedStringArray("weapon_sprite", "hitbox_component")]
+script = ExtResource("1_uicay")
+damage = 5
+cooldown = 0.5
+weapon_sprite = NodePath("Model/Hands/WeaponHand/SwordSprite")
+hitbox_component = NodePath("Model/Hands/WeaponHand/SwordSprite/HitboxComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w73at")
+}
+
+[node name="Model" type="Node2D" parent="."]
+
+[node name="PlayerExampleSprite" type="Sprite2D" parent="Model"]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h6tx2")
+
+[node name="Hands" type="Node2D" parent="Model"]
+
+[node name="WeaponHand" type="Node2D" parent="Model/Hands"]
+
+[node name="SwordSprite" type="Sprite2D" parent="Model/Hands/WeaponHand"]
+position = Vector2(24, 25)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_eybql")
+offset = Vector2(0, -28)
+
+[node name="HitboxComponent" parent="Model/Hands/WeaponHand/SwordSprite" instance=ExtResource("4_hg071")]
+unique_name_in_owner = true
+position = Vector2(-2, -36)
+collision_layer = 2048
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="Model/Hands/WeaponHand/SwordSprite/HitboxComponent"]
+position = Vector2(1.16061, 0.610807)
+shape = SubResource("RectangleShape2D_hg071")
+disabled = true
+
+[node name="HandRightSprite" type="Sprite2D" parent="Model/Hands/WeaponHand"]
+position = Vector2(17, 26)
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ufgyg")
+flip_h = true
+
+[node name="OffHand" type="Node2D" parent="Model/Hands"]
+
+[node name="HandLeftSprite" type="Sprite2D" parent="Model/Hands/OffHand"]
+position = Vector2(16, -26)
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ufgyg")

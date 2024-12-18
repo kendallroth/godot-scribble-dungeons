@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk0bil7qysudi"]
+
+[ext_resource type="Script" uid="uid://c42wlptwbkaxm" path="res://scenes/components/enemy_drop_component.gd" id="1_m5wqi"]
+[ext_resource type="PackedScene" uid="uid://caxodsg8jrxvp" path="res://scenes/objects/pickups/experience/experience_pickup.tscn" id="2_6nl5s"]
+
+[node name="EnemyDropComponent" type="Node"]
+script = ExtResource("1_m5wqi")
+drop_item = ExtResource("2_6nl5s")
